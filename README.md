@@ -1,7 +1,9 @@
 # ENGM-4620-PyProject
 *Authors: Zoe Takacs & Wyatt Shaw*
 
-A repository holding the contents of the Python Project
+A repository holding the contents of the Major Python Project
+
+Computer Vision Sign Language practice tool
 
 ## Build Instructions:
 
