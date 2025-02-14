@@ -1,5 +1,5 @@
 from fastai.vision.all import *
-from opencv import *
+import cv2
 
 # proficiency levels in points
 MIN_LEVEL = 10
