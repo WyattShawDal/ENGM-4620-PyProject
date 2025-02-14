@@ -14,7 +14,9 @@ class Model:
     def __init__(self, model_file_path):
         self._loaded_model = load_learner(Path('.')/model_file_path)
     
-    def make_prediction(self, img):
+    def make_prediction(self, img_path):
+        img = PILImage.create(img_path)
+        img = img.resize((192, 192))
         prediction = self._loaded_model.predict(img)
         return prediction
 
@@ -27,6 +29,7 @@ class Model:
     this could allow us to implement inheritance
 """
 class User:
+    _num_users = 0
     def __init__(self, name, proficiency):
         self._name = name
         self._proficiency = proficiency
@@ -69,33 +72,30 @@ class User:
 """
 class Camera:
     def __init__(self):
-        self._camera = VideoCapture(0)
-        self._new_image = {"img_path": None, "img_tensor": None}
+        self._camera = cv2.VideoCapture(0)
+        self._new_image_path = None
         pass
 
     def take_image(self):
         result, image = self._camera.read()
         if result:
             img_path = "new_image.png" #NOTE: could make this a global or passed variable
-            imwrite(img_path, image)
-            self._new_image["img_path"] = img_path
+            cv2.imwrite(img_path, image)
+            self._new_image_path = img_path
             print(f"Image saved as {img_path}")
         else:
             print("Image not captured.")
 
-    def open_image(self, img_path=None): #NOTE: is this a necessary function? Could just create tensor upon image capture
-        if img_path != None:
-            return PILImage.opn(img_path)
-        else:
-            self._new_image["img_tensor"] = PILImage.opn(img_path)
-
-    def view_image(self, img=None, wid=192, len=192):
-        if img != None:
-            img.to_thumb(wid, len)
-        else:
-            self._new_image["img_tensor"].to_thumb(wid, len)
+    def view_image(self, img_path=None, wid=192, len=192):
+        image = cv2.imread(img_path if img_path != None else self._new_image_path)
+        cv2.imshow("Image Window", image)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
 
 """To add (maybe): 
     - prompt class: facilitates generation of questions, flipping through questions, and redoing failed questions
     - application class: facilitates window generation and sets up GUI
 """
+class App:
+    def __init__(self):
+        pass
