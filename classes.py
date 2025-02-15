@@ -74,7 +74,6 @@ class Camera:
     def __init__(self):
         self._camera = cv2.VideoCapture(0)
         self._new_image_path = None
-        pass
 
     def take_image(self):
         result, image = self._camera.read()
