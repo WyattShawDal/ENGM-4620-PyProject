@@ -473,7 +473,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>401</width>
+      <width>471</width>
       <height>221</height>
      </rect>
     </property>
@@ -491,7 +491,7 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>399</width>
+         <width>401</width>
          <height>41</height>
         </size>
        </property>
@@ -823,6 +823,9 @@
        <property name="mouseTracking">
         <bool>true</bool>
        </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
        <property name="autoFillBackground">
         <bool>false</bool>
        </property>
@@ -924,7 +927,7 @@
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_3">
            <item>
-            <widget class="QLineEdit" name="lineEdit">
+            <widget class="QLineEdit" name="usernameEdit">
              <property name="minimumSize">
               <size>
                <width>113</width>
@@ -943,11 +946,29 @@
                   </color>
                  </brush>
                 </colorrole>
+                <colorrole role="PlaceholderText">
+                 <brush brushstyle="NoBrush">
+                  <color alpha="128">
+                   <red>0</red>
+                   <green>0</green>
+                   <blue>0</blue>
+                  </color>
+                 </brush>
+                </colorrole>
                </active>
                <inactive>
                 <colorrole role="Text">
                  <brush brushstyle="SolidPattern">
                   <color alpha="255">
+                   <red>0</red>
+                   <green>0</green>
+                   <blue>0</blue>
+                  </color>
+                 </brush>
+                </colorrole>
+                <colorrole role="PlaceholderText">
+                 <brush brushstyle="NoBrush">
+                  <color alpha="128">
                    <red>0</red>
                    <green>0</green>
                    <blue>0</blue>
@@ -965,8 +986,20 @@
                   </color>
                  </brush>
                 </colorrole>
+                <colorrole role="PlaceholderText">
+                 <brush brushstyle="NoBrush">
+                  <color alpha="128">
+                   <red>0</red>
+                   <green>0</green>
+                   <blue>0</blue>
+                  </color>
+                 </brush>
+                </colorrole>
                </disabled>
               </palette>
+             </property>
+             <property name="text">
+              <string/>
              </property>
             </widget>
            </item>
@@ -990,11 +1023,29 @@
                   </color>
                  </brush>
                 </colorrole>
+                <colorrole role="PlaceholderText">
+                 <brush brushstyle="NoBrush">
+                  <color alpha="128">
+                   <red>0</red>
+                   <green>0</green>
+                   <blue>0</blue>
+                  </color>
+                 </brush>
+                </colorrole>
                </active>
                <inactive>
                 <colorrole role="Text">
                  <brush brushstyle="SolidPattern">
                   <color alpha="255">
+                   <red>0</red>
+                   <green>0</green>
+                   <blue>0</blue>
+                  </color>
+                 </brush>
+                </colorrole>
+                <colorrole role="PlaceholderText">
+                 <brush brushstyle="NoBrush">
+                  <color alpha="128">
                    <red>0</red>
                    <green>0</green>
                    <blue>0</blue>
@@ -1009,6 +1060,15 @@
                    <red>6</red>
                    <green>21</green>
                    <blue>43</blue>
+                  </color>
+                 </brush>
+                </colorrole>
+                <colorrole role="PlaceholderText">
+                 <brush brushstyle="NoBrush">
+                  <color alpha="128">
+                   <red>0</red>
+                   <green>0</green>
+                   <blue>0</blue>
                   </color>
                  </brush>
                 </colorrole>
@@ -1083,7 +1143,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="signupButton">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
              <horstretch>0</horstretch>
@@ -1111,6 +1171,15 @@
                 </color>
                </brush>
               </colorrole>
+              <colorrole role="PlaceholderText">
+               <brush brushstyle="NoBrush">
+                <color alpha="128">
+                 <red>12</red>
+                 <green>43</green>
+                 <blue>86</blue>
+                </color>
+               </brush>
+              </colorrole>
              </active>
              <inactive>
               <colorrole role="Text">
@@ -1125,6 +1194,15 @@
               <colorrole role="ButtonText">
                <brush brushstyle="SolidPattern">
                 <color alpha="255">
+                 <red>12</red>
+                 <green>43</green>
+                 <blue>86</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="PlaceholderText">
+               <brush brushstyle="NoBrush">
+                <color alpha="128">
                  <red>12</red>
                  <green>43</green>
                  <blue>86</blue>
@@ -1148,6 +1226,15 @@
                  <red>6</red>
                  <green>21</green>
                  <blue>43</blue>
+                </color>
+               </brush>
+              </colorrole>
+              <colorrole role="PlaceholderText">
+               <brush brushstyle="NoBrush">
+                <color alpha="128">
+                 <red>12</red>
+                 <green>43</green>
+                 <blue>86</blue>
                 </color>
                </brush>
               </colorrole>

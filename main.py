@@ -1,5 +1,5 @@
 import os
-from classes import Model, User, Camera
+from base_classes import Model, User, Camera
 
 if __name__ == '__main__':
     if os.getenv("TEST_MODE") == "1":

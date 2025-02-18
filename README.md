@@ -18,3 +18,11 @@ Computer Vision Sign Language practice tool
 2. Open designer by calling **from within project folder**: `designer`
 3. Develop GUI and save as .ui file to project folder
 4. Convert to a python file: `python -m PyQt5.uic.pyuic -x filename.ui -o output_filename.py`
+
+## Current TODO List
+
+1. Implement load_user_database() in controller_classes.py
+2. Implement save_profile() in base_classes.py
+3. Add button to Lesson1 class that allows user to retake picture before submitting it
+4. Create new screen class to view and edit profile data using the user_controller() and add class as a StackedWidget to MainWindow class
+5. Verify there is proper Error catching implemented everywhere

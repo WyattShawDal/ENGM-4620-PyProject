@@ -11,14 +11,20 @@ MAX_LEVEL = 30
     - make predictions on single images
 """
 class Model:
-    def __init__(self, model_file_path):
-        self._loaded_model = load_learner(Path('.')/model_file_path)
+    def __init__(self, model_fpath):
+        try:
+            self._loaded_model = load_learner(Path('.')/model_fpath)
+        except:
+            print("Error! Model could not be loaded.")
     
     def make_prediction(self, img_path):
-        img = PILImage.create(img_path)
-        img = img.resize((192, 192))
-        prediction = self._loaded_model.predict(img)
-        return prediction
+        try:
+            img = PILImage.create(img_path)
+            img = img.resize((192, 192))
+            predicted_letter, _, probability = self._loaded_model.predict(img)
+            return predicted_letter, probability
+        except:
+            print("Error! Cannot open image.")
 
 """Functionalities for the User class: 
     - create/edit/view a profile
@@ -35,13 +41,13 @@ class User:
         self._proficiency = proficiency
         self._score = 0
 
-    def display_profile(self):
-        print("User: ", self._name, "\nProficiency: ", self._proficiency)
+    def display_profile(self): # eventually make an Application class that can display and edit profile info
+        return ("User: ", self._name, "\nProficiency: ", self._proficiency)
 
-    def update_profile(self):
+    def update_profile(self): # eventually not needed
         new_name = input("Enter new profile name or * to cancel: ")
-        #TODO: Figure out why the print statement is not working
-        (setattr(self, '_name', new_name) and print(f"New name: {self._name}")) if new_name != '*' else print("Cancelled.")
+        setattr(self, '_name', new_name) and (result:= (f"New name: {self._name}")) if new_name != '*' else (result:= ("Cancelled."))
+        return result
     
     def update_score(self, new_score):
         self._score += new_score
@@ -63,7 +69,7 @@ class User:
         return self._proficiency
 
     def save_profile(self):
-        #save user data and scores to JSON db
+        #TODO: save user data and scores to JSON db
         pass
 
 """Functionalities of the camera class:
@@ -72,29 +78,25 @@ class User:
 """
 class Camera:
     def __init__(self):
-        self._camera = cv2.VideoCapture(0)
+        try: 
+            self._camera = cv2.VideoCapture(0)
+        except: 
+            print("Error! Camera cannot be opened")
         self._new_image_path = None
 
     def take_image(self):
         result, image = self._camera.read()
         if result:
             img_path = "new_image.png" #NOTE: could make this a global or passed variable
+            image = cv2.resize(image, (192, 192))
             cv2.imwrite(img_path, image)
             self._new_image_path = img_path
-            print(f"Image saved as {img_path}")
+            return (f"Image saved as {img_path}")
         else:
-            print("Image not captured.")
+            return ("Image not captured.")
 
-    def view_image(self, img_path=None, wid=192, len=192):
+    def view_image(self, img_path=None, wid=192, len=192): # probably not needed long term
         image = cv2.imread(img_path if img_path != None else self._new_image_path)
         cv2.imshow("Image Window", image)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
-
-"""To add (maybe): 
-    - prompt class: facilitates generation of questions, flipping through questions, and redoing failed questions
-    - application class: facilitates window generation and sets up GUI
-"""
-class App:
-    def __init__(self):
-        pass
