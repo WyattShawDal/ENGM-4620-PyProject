@@ -64,4 +64,9 @@ class UserController:
     def save_user_database(self):
         if not self._active_users:
             raise Exception("No users to save.")
-        self._db.save_db(self._active_users)
+        user_db={}
+        for user_name, user_data in self._active_users.items():
+            user_db[user_name] = {
+                "proficiency": user_data._proficiency
+            }
+        self._db.save_db(user_db)
