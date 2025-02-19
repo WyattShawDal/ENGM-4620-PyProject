@@ -1,12 +1,17 @@
 import sys
+import logging
+
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QStackedWidget
 from PyQt5.QtGui import QPalette, QColor, QPixmap
+
 from base_classes import User
+from user_database import Database
 from controller_classes import SessionController, UserController
 from random import shuffle
-import logging
+
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -29,7 +34,7 @@ class MainWindow(QMainWindow):
         self._choose_lesson_scn = ChooseLesson(self)
         self._lesson1_scn = Lesson1(self)
         self._session_controller = SessionController()
-        self._user_controller = UserController()
+        self._user_controller = UserController("our_users")
 
         self._stacked_widget = QStackedWidget()
         self._stacked_widget.addWidget(self._main_menu_scn)
