@@ -1,5 +1,5 @@
 from base_classes import User, Model, Camera
-from user_database import Database
+from user_database import Database, PickleDatabase
 """Functionalities of this class:
     - Initializes the camera and model objects
     - Makes connections between the camera, model, user classes
@@ -26,7 +26,7 @@ class SessionController:
 #FIXME Need to change how we want to save the data, since we can't save type User to JSON
 class UserController:
     def __init__(self, user_db: str):
-        self._db = Database(user_db)
+        self._db = PickleDatabase(user_db)
         self._active_users = None
 
     def load_user_database(self) -> dict:
@@ -35,9 +35,11 @@ class UserController:
     def create_user(self, name, proficiency):
         if not self._active_users:
             self.load_user_database()
-        if name not in [user._name for user in self._active_users.values()]:
+            #FIXME added for debugging
+            print(self._active_users)
+        if name not in self._active_users:
             new_user = User(name, proficiency)
-            self._active_users[name] = new_user
+            self._active_users.append(new_user)
             self.save_user_database()
         else:
             return Exception
@@ -64,9 +66,4 @@ class UserController:
     def save_user_database(self):
         if not self._active_users:
             raise Exception("No users to save.")
-        user_db={}
-        for user_name, user_data in self._active_users.items():
-            user_db[user_name] = {
-                "proficiency": user_data._proficiency
-            }
-        self._db.save_db(user_db)
+        self._db.save_db(self._active_users)
