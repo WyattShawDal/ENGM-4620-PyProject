@@ -25,4 +25,6 @@ Computer Vision Sign Language practice tool
 2. Implement save_profile() in base_classes.py
 3. Add button to Lesson1 class that allows user to retake picture before submitting it
 4. Create new screen class to view and edit profile data using the user_controller() and add class as a StackedWidget to MainWindow class
-5. Verify there is proper Error catching implemented everywhere
+5. Add check for when access to camera is blocked
+6. Add login option, once user storing/loading has be implemented
+7. Verify there is proper Error catching implemented everywhere

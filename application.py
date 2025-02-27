@@ -8,14 +8,19 @@ from controller_classes import SessionController, UserController
 from random import shuffle
 import logging
 
+# log info for testing; alternative to print() statement
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-"""Functionalities of MainWindow:
-    - Create screen widgets
-    - Toggle between widgets
-"""
 class MainWindow(QMainWindow):
+    """Functionalities of MainWindow:
+        - Create screen widgets
+        - Toggle between widgets
+    
+    Attributes: 
+        _current_user (string): username of the current user
+        _
+    """
     def __init__(self):
         super().__init__()
         logger.info("Entered MainWindow")
