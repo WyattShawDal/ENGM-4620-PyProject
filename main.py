@@ -19,3 +19,5 @@ if __name__ == '__main__':
         camera = Camera()
         camera.take_image()
         camera.view_image()
+    else:
+        print("NO TEST VARIABLE FOUND IN ENVIRONMENT")

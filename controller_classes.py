@@ -1,4 +1,5 @@
 from base_classes import User, Model, Camera
+from user_database import Database, PickleDatabase
 """Functionalities of this class:
     - Initializes the camera and model objects
     - Makes connections between the camera, model, user classes
@@ -22,27 +23,31 @@ class SessionController:
 """Functionalities of this class:
     - Create, manage, save, and load user database
 """
+#FIXME Need to change how we want to save the data, since we can't save type User to JSON
 class UserController:
-    def __init__(self, user_db=None):
-        self._active_users = {}
-        if user_db != None:
-            self.load_user_database(user_db)
+    def __init__(self, user_db: str):
+        self._db = PickleDatabase(user_db)
+        self._active_users = None
 
-    def load_user_database(self, user_db=None):
-        if user_db != None:
-            #TODO: check for user database file and load saved user profiles
-            pass
+    def load_user_database(self) -> dict:
+        self._active_users = self._db.load_db()
 
     def create_user(self, name, proficiency):
-        if name not in [user._name for user in self._active_users.values()]:
+        if not self._active_users:
+            self.load_user_database()
+            #FIXME added for debugging
+            print(self._active_users)
+        if name not in self._active_users:
             new_user = User(name, proficiency)
-            self._active_users[name] = new_user
+            self._active_users.append(new_user)
+            self.save_user_database()
         else:
             return Exception
 
     def delete_user(self, user):
         if user._name in self._active_users:
             self._active_users.pop(user._name)
+            self.save_user_database()
         else:
             raise Exception("Cannot delete! User not found")
 
@@ -51,6 +56,7 @@ class UserController:
         if name in self._active_users:
             self._active_users[name].update_score(score)
             self._active_users[name].update_proficiency()
+            self.save_user_database()
         else:
             raise Exception("Cannot update! User not found")
     
@@ -60,5 +66,4 @@ class UserController:
     def save_user_database(self):
         if not self._active_users:
             raise Exception("No users to save.")
-        for user in self._active_users.values():
-            user.save_profile()
+        self._db.save_db(self._active_users)
