@@ -21,6 +21,8 @@ class SessionController:
         self._camera.take_image()
         if self._model != None:
             letter, probability = self._model.make_prediction(self._camera._new_image_path)
+            index = ord(letter) - ord('a')
+            logger.ingo(f'Predicted letter {letter} with probability {probability[index]}')
             return letter, probability
         else:
             return None, None
@@ -57,23 +59,23 @@ class UserController:
         
     def update_score(self, user, new_scores, alpha=0.2, max_storage=50):
         # append latest result to score history for each letter
-        for i, result in enumerate(new_scores):
-            user._score_history[i].append(result)
+        for letter, result in enumerate(new_scores):
+            user._score_history[letter].append(result)
             # ensure only latest 50 attempts are being stored
-            if len(user._score_history[i]) > max_storage:
-                user._score_history[i] = user._score_history[i][-max_storage:]
+            if len(user._score_history[letter]) > max_storage:
+                user._score_history[letter] = user._score_history[letter][-max_storage:]
 
         # calculate the new weighted and percent score for each letter
-        for i, _ in enumerate(user._w_let_scores):
+        for letter, _ in enumerate(user._w_let_scores):
             score, weighted_sum = 0, 0
-            for j, result in enumerate(reversed(user._score_history[i])):
+            for j, result in enumerate(reversed(user._score_history[letter])):
                 # weight decays as j increases
                 weight = (1-alpha) ** j 
                 score += weight * (1 if result else -1)
                 weighted_sum += weight
             # weighted scores are from -1 to 1 while percent scores are from 0 to 100
-            user._w_let_scores[i] = score / weighted_sum
-            user._p_let_scores[i] = ((user._w_let_scores[i] + 1) / 2) * 100
+            user._w_let_scores[letter] = score / weighted_sum
+            user._p_let_scores[letter] = ((user._w_let_scores[letter] + 1) / 2) * 100
         
         # calculate the overall user score as avg of letter scores
         user._overall_score = np.mean(user._p_let_scores)

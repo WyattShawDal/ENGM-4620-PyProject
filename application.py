@@ -32,8 +32,8 @@ class MainWindow(QMainWindow):
         self._current_user = None
 
         # initialize base class controllers
-        self._session_controller = SessionController()
-        self._user_controller = UserController("our_users")
+        self._session_controller = SessionController('ASL_EP7_BATCH64.pkl')
+        self._user_controller = UserController('our_users')
 
         # initialize all application screens
         self._main_menu_scn = LoginPage(self)

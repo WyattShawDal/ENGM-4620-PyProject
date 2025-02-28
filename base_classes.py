@@ -16,9 +16,10 @@ class Model:
     """
     def __init__(self, model_fpath):
         try:
-            self._loaded_model = load_learner(Path('.')/model_fpath)
-        except:
-            print("Error! Model could not be loaded.")
+            self._loaded_model = load_learner(model_fpath)
+        except Exception as e:
+            print(f"Error! Model could not be loaded. Error {e}")
+            print(model_fpath)
     
     def make_prediction(self, img_path):
         """Makes prediction on letter is represented in the image provided.
