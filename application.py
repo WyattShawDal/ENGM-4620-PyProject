@@ -36,15 +36,17 @@ class MainWindow(QMainWindow):
         self._user_controller = UserController("our_users")
 
         # initialize all application screens
-        self._main_menu_scn = MainMenu(self)
-        self._choose_lesson_scn = ChooseLesson(self)
+        self._main_menu_scn = LoginPage(self)
+        self._choose_lesson_scn = MainMenu(self)
         self._lesson1_scn = Lesson1(self)
+        self._profile_scn = ViewProfile(self)
 
         # add application screens to stacked widget
         self._stacked_widget = QStackedWidget()
         self._stacked_widget.addWidget(self._main_menu_scn)
         self._stacked_widget.addWidget(self._choose_lesson_scn)
         self._stacked_widget.addWidget(self._lesson1_scn)
+        self._stacked_widget.addWidget(self._profile_scn)
         self.setCentralWidget(self._stacked_widget)
         
         self._stacked_widget.setCurrentWidget(self._main_menu_scn)
@@ -52,15 +54,15 @@ class MainWindow(QMainWindow):
     def switch_to_screen(self, screen):
         self._stacked_widget.setCurrentWidget(screen)
 
-"""Functionalities of MainMenu:
+"""Functionalities of LoginPage:
     - Have user sign up
     - TODO: have users saved to user can simply login
 """
-class MainMenu(QMainWindow):
+class LoginPage(QMainWindow):
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
-        loadUi("mainmenuGUI.ui", self)
+        loadUi("loginpageGUI.ui", self)
         self.signupButton.clicked.connect(self.sign_up)
 
     def sign_up(self):
@@ -69,20 +71,27 @@ class MainMenu(QMainWindow):
             QMessageBox(QMessageBox.NoIcon, "Error!", "That username is taken!     ", QMessageBox.Ok).exec_()
             return
         self.parent.switch_to_screen(self.parent._choose_lesson_scn)
+        logger.info("Sign up successful.")
 
-"""Functionalities of ChooseLesson:
+"""Functionalities of MainMenu:
     - Have user choose what lesson they want to try
     - For now only one lesson available
 """
-class ChooseLesson(QDialog):
+class MainMenu(QDialog):
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
-        loadUi("chooselessonGUI.ui", self)
+        loadUi("mainmenuGUI.ui", self)
         self.lesson1Button.clicked.connect(self.choose_lesson_1)
+        self.profileButton.clicked.connect(self.choose_view_profile)
 
     def choose_lesson_1(self):
+        logger.info("Lesson 1 selected.")
         self.parent.switch_to_screen(self.parent._lesson1_scn)
+    
+    def choose_view_profile(self):
+        logger.info("Entering profile view.")
+        self.parent.switch_to_screen(self.parent._profile_scn)
 
 """Functionalities of Lesson1:
     - Cycle through all letters of the alphabet randomly
@@ -157,21 +166,39 @@ class Lesson1(QDialog):
     def return_to_choose_lesson(self):
         self.parent.switch_to_screen(self.parent._choose_lesson_scn)
         self.reset_lesson()
+        logger.info("Lesson 1 completed.")
 
-"""TODO: 
-    - implement this screen in the MainWindow class
-    - create a designer .ui file for this screen!
-    - change the labels on the screen to reflect profile data
+"""Functionalities of ViewProfile:
+    - Displays the user's name, overall score, and proficiency level
+    - Updates each time the screen is accessed
 """
 class ViewProfile(QDialog):
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
-        # loadUi("viewprofileGUI.ui", self)
+        loadUi("profileviewGUI.ui", self)
         self.returnButton.clicked.connect(self.exit_profile_view)
+
+    def showEvent(self, event):
+        # method run automatically when screen is shown inherited from QWidget->QDialog->ViewProfile
+        super().showEvent(event)
+        self.update_user_info()
+    
+    def update_user_info(self):
+        try:
+            self.usernameslotLabel.setText(self.parent._current_user)
+            
+            score = str(self.parent._user_controller._active_users[self.parent._current_user]._overall_score)
+            self.scoreslotLabel.setText(score)
+            
+            proficiency = self.parent._user_controller._active_users[self.parent._current_user]._proficiency
+            self.proficiencyslotLabel.setText(proficiency)
+        except:
+            logger.info("Error. No active user.") 
 
     def exit_profile_view(self):
         self.parent.switch_to_screen(self.parent._choose_lesson_scn)
+        logger.info("Exiting profile view.")
         
 # Set the palette of the window, not sure if needed rn or if .ui files can take care of this
 app = QApplication(sys.argv)

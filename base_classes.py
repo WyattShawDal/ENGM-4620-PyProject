@@ -58,7 +58,7 @@ class User:
         self._score_history = [[] for x in range(26)]
         self._w_let_scores = [None for x in range(26)]
         self._p_let_scores = [None for x in range(26)]
-        self._overall_score = 0
+        self._overall_score = 0.0
 
     def display_profile(self): # eventually make an Application class that can display and edit profile info
         """Return the content of a users profile
