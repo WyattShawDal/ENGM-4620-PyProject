@@ -10,7 +10,7 @@ DB Structure
 
 Users {
     "User1": {
-        proficency: ...
+        proficency: "beginner" string
         letter_scores: [] #array of len(alphabet)
     }
 }
@@ -51,8 +51,11 @@ class PickleDatabase(Database):
     def __init__(self, db_name: str = "data"):
         # Add .pkl extension if not already present
         self.db_name = f"{db_name}.pkl" if not db_name.endswith(".pkl") else db_name
+        self.db_data = {}
+
     # No need to override db_create as it doesn't deal with serialization
-    def load_db(self) -> list:
+
+    def load_db(self) -> dict:
         # If a path exists to the database
         db_logger.info(f"Loading DB = {self.db_name}")
         if Path(self.db_name).exists():
@@ -61,6 +64,7 @@ class PickleDatabase(Database):
                 return pickle.load(db)
         else:
             return self.db_create()
+        
     def save_db(self, data) -> None:
         db_logger.info(f"Saving DB = {self.db_name}")
         if not data:

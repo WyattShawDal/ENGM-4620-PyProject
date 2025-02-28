@@ -2,9 +2,9 @@ from fastai.vision.all import *
 import cv2
 
 # proficiency levels in points
-MIN_LEVEL = 10
-MED_LEVEL = 20
-MAX_LEVEL = 30
+MIN_LEVEL = 35.0
+MED_LEVEL = 60.0
+MAX_LEVEL = 85.0
 
 class Model:
     """Functionalities of the Model class: 
@@ -55,7 +55,10 @@ class User:
     def __init__(self, name, proficiency):
         self._name = name
         self._proficiency = proficiency
-        self._score = 0
+        self._score_history = [[] for x in range(26)]
+        self._w_let_scores = [None for x in range(26)]
+        self._p_let_scores = [None for x in range(26)]
+        self._overall_score = 0
 
     def display_profile(self): # eventually make an Application class that can display and edit profile info
         """Return the content of a users profile
@@ -69,14 +72,6 @@ class User:
         setattr(self, '_name', new_name) and (result:= (f"New name: {self._name}")) if new_name != '*' else (result:= ("Cancelled."))
         return result
     
-    def update_score(self, new_score):
-        """Increment the users score; currently score is accumulated and cannot be lost
-
-        Args:
-            new_score (int): most recently recieved score
-        """
-        self._score += new_score
-
     def check_score(self):
         """Retireve user's current score
         """
@@ -85,7 +80,7 @@ class User:
     def update_proficiency(self):
         """Update the users proficiency level to match their score
         """
-        if self._score < MIN_LEVEL:
+        if self._overall_score < MIN_LEVEL:
             self._proficiency = "Beginner"
         elif self._score < MED_LEVEL:
             self._proficiency = "Intermediate"
@@ -98,12 +93,6 @@ class User:
         """Retrieve the proficiency of the user
         """
         return self._proficiency
-
-    def save_profile(self):
-        """Save modified and new user profiles
-        """
-        #TODO: save user data and scores to JSON db
-        pass
 
 class Camera:
     """Functionalities of the camera class:

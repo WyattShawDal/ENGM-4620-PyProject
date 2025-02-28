@@ -1,16 +1,13 @@
 import sys
 import logging
+import numpy as np
 
 from PyQt5.uic import loadUi
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QStackedWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QStackedWidget, QMessageBox
 from PyQt5.QtGui import QPalette, QColor, QPixmap
 
-from base_classes import User
-from user_database import Database
 from controller_classes import SessionController, UserController
 from random import shuffle
-
 
 
 # log info for testing; alternative to print() statement
@@ -24,7 +21,6 @@ class MainWindow(QMainWindow):
     
     Attributes: 
         _current_user (string): username of the current user
-        _
     """
     def __init__(self):
         super().__init__()
@@ -35,18 +31,22 @@ class MainWindow(QMainWindow):
 
         self._current_user = None
 
-        self._main_menu_scn = MainMenu(self)
-        self._choose_lesson_scn = ChooseLesson(self)
-        self._lesson1_scn = Lesson1(self)
+        # initialize base class controllers
         self._session_controller = SessionController()
         self._user_controller = UserController("our_users")
 
+        # initialize all application screens
+        self._main_menu_scn = MainMenu(self)
+        self._choose_lesson_scn = ChooseLesson(self)
+        self._lesson1_scn = Lesson1(self)
+
+        # add application screens to stacked widget
         self._stacked_widget = QStackedWidget()
         self._stacked_widget.addWidget(self._main_menu_scn)
         self._stacked_widget.addWidget(self._choose_lesson_scn)
         self._stacked_widget.addWidget(self._lesson1_scn)
-
         self.setCentralWidget(self._stacked_widget)
+        
         self._stacked_widget.setCurrentWidget(self._main_menu_scn)
 
     def switch_to_screen(self, screen):
@@ -65,7 +65,9 @@ class MainMenu(QMainWindow):
 
     def sign_up(self):
         self.parent._current_user = self.usernameEdit.text()
-        self.parent._user_controller.create_user(self.parent._current_user, self.comboBox.currentText())        
+        while(self.parent._user_controller.create_user(self.parent._current_user, self.comboBox.currentText()) == None):
+            QMessageBox(QMessageBox.NoIcon, "Error!", "That username is taken!     ", QMessageBox.Ok).exec_()
+            return
         self.parent.switch_to_screen(self.parent._choose_lesson_scn)
 
 """Functionalities of ChooseLesson:
@@ -94,7 +96,7 @@ class Lesson1(QDialog):
         self.reset_lesson()
     
     def reset_lesson(self):
-        self._score = 0
+        self._score = []
         self._current_prompt = None
         self._pixmap = QPixmap()
         self._alphabet_generator = self.alphabet_generator()
@@ -132,9 +134,10 @@ class Lesson1(QDialog):
         self.image.update()
         if self._current_prompt == letter:
             self.promptBox.setText("Correct!")
-            self._score += 1
+            self._score.append(1)
         else: 
             self.promptBox.setText(f"Incorrect. Correct answer: {letter}")
+            self._score.append(0)
         self.questionBox.setText("Result:")
         self.promptBox.setText("Insert result here.")
         self.button.setText("Next")
@@ -146,7 +149,7 @@ class Lesson1(QDialog):
         except TypeError:
             pass
         self.questionBox.setText("Lesson complete!")
-        self.promptBox.setText(f"Final score: {self._score}/26")
+        self.promptBox.setText(f"Final score: {np.sum(self._score)}/26")
         self.parent._user_controller.update_user(self.parent._current_user, self._score)
         self.button.setText("Finish")
         self.button.clicked.connect(self.return_to_choose_lesson)
@@ -155,11 +158,26 @@ class Lesson1(QDialog):
         self.parent.switch_to_screen(self.parent._choose_lesson_scn)
         self.reset_lesson()
 
+"""TODO: 
+    - implement this screen in the MainWindow class
+    - create a designer .ui file for this screen!
+    - change the labels on the screen to reflect profile data
+"""
+class ViewProfile(QDialog):
+    def __init__(self, parent):
+        super().__init__()
+        self.parent = parent
+        # loadUi("viewprofileGUI.ui", self)
+        self.returnButton.clicked.connect(self.exit_profile_view)
+
+    def exit_profile_view(self):
+        self.parent.switch_to_screen(self.parent._choose_lesson_scn)
+        
 # Set the palette of the window, not sure if needed rn or if .ui files can take care of this
 app = QApplication(sys.argv)
 dark_palette = QPalette()
 dark_palette.setColor(QPalette.Window, QColor(60, 70, 95))
-dark_palette.setColor(QPalette.WindowText, QColor(255, 255, 255))
+dark_palette.setColor(QPalette.WindowText, QColor(0, 0, 0))
 dark_palette.setColor(QPalette.Base, QColor(60, 70, 95))
 dark_palette.setColor(QPalette.AlternateBase, QColor(53, 53, 53))
 dark_palette.setColor(QPalette.ToolTipBase, QColor(255, 255, 255))
