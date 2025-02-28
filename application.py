@@ -116,6 +116,8 @@ class Lesson1(QDialog):
         super().__init__()
         self.parent = parent
         loadUi("lessonGUI.ui", self)
+        self.retakeButton.hide()
+        self.retakeButton.clicked.connect(self.take_image)
         self.reset_lesson()
     
     def reset_lesson(self):
@@ -134,19 +136,23 @@ class Lesson1(QDialog):
 
     def next_question(self):
         try:
-            try:
-                self.button.clicked.disconnect()
-            except TypeError:
-                pass
             self.questionBox.setText("Please sign the letter below:")
             self._current_prompt = next(self._alphabet_generator)
             self.promptBox.setText(self._current_prompt)
-            self.button.setText("Take Picture")
-            self.button.clicked.connect(self.result)
+            self.take_image()
         except StopIteration:
             self.display_score()
+    
+    def take_image(self):
+        try:
+            self.button.clicked.disconnect()
+        except TypeError:
+            pass
+        self.button.setText("Take Picture")
+        self.button.clicked.connect(self.check_image)
+        self.retakeButton.hide()
 
-    def result(self):
+    def check_image(self):
         try:
             self.button.clicked.disconnect()
         except TypeError:
@@ -155,6 +161,16 @@ class Lesson1(QDialog):
         self._pixmap.load('new_image.png')
         self.image.setPixmap(self._pixmap)
         self.image.update()
+        self.button.setText("Submit")
+        self.button.clicked.connect(lambda: self.result(letter))
+        self.retakeButton.show()
+
+    def result(self, letter):
+        self.retakeButton.hide()
+        try:
+            self.button.clicked.disconnect()
+        except TypeError:
+            pass
         if self._current_prompt == letter:
             self.promptBox.setText("Correct!")
             self._score.append(1)

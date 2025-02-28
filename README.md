@@ -26,3 +26,4 @@ Computer Vision Sign Language practice tool
 3. Verify there is proper Error catching implemented everywhere
 4. Add more lessons eventually
 5. Allow user to scroll through/view each letter score in profile view page
+6. Add ability to view history of results for each lesson

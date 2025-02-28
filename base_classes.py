@@ -82,9 +82,9 @@ class User:
         """
         if self._overall_score < MIN_LEVEL:
             self._proficiency = "Beginner"
-        elif self._score < MED_LEVEL:
+        elif self._overall_score < MED_LEVEL:
             self._proficiency = "Intermediate"
-        elif self._score < MAX_LEVEL:
+        elif self._overall_score < MAX_LEVEL:
             self._proficiency = "Advanced"
         else:
             self._proficiency = "Signed Language Sensei"

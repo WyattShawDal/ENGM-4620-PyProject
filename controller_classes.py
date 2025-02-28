@@ -55,7 +55,7 @@ class UserController:
         else:
             raise Exception("Cannot delete! User not found")
         
-    def update_score(self, user, new_scores, alpha=0.5, max_storage=50):
+    def update_score(self, user, new_scores, alpha=0.2, max_storage=50):
         # append latest result to score history for each letter
         for i, result in enumerate(new_scores):
             user._score_history[i].append(result)
@@ -67,17 +67,16 @@ class UserController:
         for i, _ in enumerate(user._w_let_scores):
             score, weighted_sum = 0, 0
             for j, result in enumerate(reversed(user._score_history[i])):
-                weight = (1-alpha) ** j
+                # weight decays as j increases
+                weight = (1-alpha) ** j 
                 score += weight * (1 if result else -1)
                 weighted_sum += weight
+            # weighted scores are from -1 to 1 while percent scores are from 0 to 100
             user._w_let_scores[i] = score / weighted_sum
-            print(f"Letter weighted scores: {user._w_let_scores[i]}")
-            user._p_let_scores[i] = ((score + 1) / 2) * 100
-            print(f"Letter percentage scores: {user._p_let_scores[i]}")
+            user._p_let_scores[i] = ((user._w_let_scores[i] + 1) / 2) * 100
         
-        # calculate the overall user score
+        # calculate the overall user score as avg of letter scores
         user._overall_score = np.mean(user._p_let_scores)
-        print(f"Overall score: {user._overall_score}")
 
     def update_user(self, name, new_scores):
         # need to update score before proficiency, as proficiency is based off score
