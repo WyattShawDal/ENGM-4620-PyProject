@@ -26,7 +26,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         logger.info("Entered MainWindow")
 
-        self.setMinimumSize(750, 500)
+        self.setMinimumSize(750, 650)
         self.setWindowTitle("Sign Language Learner")
 
         self._current_user = None
@@ -64,14 +64,28 @@ class LoginPage(QMainWindow):
         self.parent = parent
         loadUi("loginpageGUI.ui", self)
         self.signupButton.clicked.connect(self.sign_up)
+        self.loginButton.clicked.connect(self.login)
 
     def sign_up(self):
+        if self.usernameEdit.text() == "":
+            QMessageBox(QMessageBox.NoIcon, "Error!", "No username specified!     ", QMessageBox.Ok).exec_()
+            return
         self.parent._current_user = self.usernameEdit.text()
         while(self.parent._user_controller.create_user(self.parent._current_user, self.comboBox.currentText()) == None):
             QMessageBox(QMessageBox.NoIcon, "Error!", "That username is taken!     ", QMessageBox.Ok).exec_()
             return
         self.parent.switch_to_screen(self.parent._choose_lesson_scn)
         logger.info("Sign up successful.")
+
+    def login(self):
+        name = self.loginusernameEdit.text()
+        if name in self.parent._user_controller._active_users:
+            self.parent._current_user = name
+            logger.info(f"Logged in as: {name}")
+            self.parent.switch_to_screen(self.parent._choose_lesson_scn)
+        else:
+            QMessageBox(QMessageBox.NoIcon, "Error!", "Account does not exist!     ", QMessageBox.Ok).exec_()
+            logger.info(f"User {name} does not exist.")
 
 """Functionalities of MainMenu:
     - Have user choose what lesson they want to try
@@ -189,10 +203,14 @@ class ViewProfile(QDialog):
             self.usernameslotLabel.setText(self.parent._current_user)
             
             score = str(self.parent._user_controller._active_users[self.parent._current_user]._overall_score)
+            logger.info("Found the score.")
             self.scoreslotLabel.setText(score)
-            
+            logger.info("Updated the score.")
+
             proficiency = self.parent._user_controller._active_users[self.parent._current_user]._proficiency
+            logger.info("Found the proficiency.")
             self.proficiencyslotLabel.setText(proficiency)
+            logger.info("Updated the proficiency.")
         except:
             logger.info("Error. No active user.") 
 

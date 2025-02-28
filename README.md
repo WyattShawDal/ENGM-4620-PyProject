@@ -22,8 +22,7 @@ Computer Vision Sign Language practice tool
 ## Current TODO List
 
 1. Add button to Lesson1 class that allows user to retake picture before submitting it
-2. Add login option for existing users
-3. Add model file and remove model access blocking in Lesson 1
-4. Verify there is proper Error catching implemented everywhere
-5. Add more lessons eventually
-6. Allow user to scroll through/view each letter score in profile view page
+2. Add model file and remove model access blocking in Lesson 1
+3. Verify there is proper Error catching implemented everywhere
+4. Add more lessons eventually
+5. Allow user to scroll through/view each letter score in profile view page
