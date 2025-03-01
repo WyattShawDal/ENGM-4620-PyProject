@@ -178,7 +178,6 @@ class Lesson1(QDialog):
             self.promptBox.setText(f"Incorrect. Correct answer: {letter}")
             self._score.append(0)
         self.questionBox.setText("Result:")
-        self.promptBox.setText("Insert result here.")
         self.button.setText("Next")
         self.button.clicked.connect(self.next_question)
 

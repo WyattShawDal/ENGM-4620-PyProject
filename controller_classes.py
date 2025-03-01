@@ -21,8 +21,7 @@ class SessionController:
         self._camera.take_image()
         if self._model != None:
             letter, probability = self._model.make_prediction(self._camera._new_image_path)
-            index = ord(letter) - ord('a')
-            logger.ingo(f'Predicted letter {letter} with probability {probability[index]}')
+            logger.info(f'Predicted letter {letter}')
             return letter, probability
         else:
             return None, None

@@ -1,10 +1,19 @@
 from fastai.vision.all import *
 import cv2
+import platform
 
 # proficiency levels in points
 MIN_LEVEL = 35.0
 MED_LEVEL = 60.0
 MAX_LEVEL = 85.0
+
+# Path the file path classification when running on Windows, default is Linux
+if platform.system() == 'Windows':
+    import pathlib
+    
+    original_posix_path = pathlib.PosixPath
+    
+    pathlib.PosixPath = pathlib.WindowsPath
 
 class Model:
     """Functionalities of the Model class: 
