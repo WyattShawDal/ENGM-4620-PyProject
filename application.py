@@ -9,14 +9,11 @@ from PyQt5.QtCore import Qt
 
 from controller_classes import SessionController, UserController
 from random import shuffle
-from stylesheet import light_mode_stylesheet, sunset_mode_stylesheet, dark_mode_stylesheet
-
+from stylesheet import Light, Sunset, Dark
 
 # log info for testing; alternative to print() statement
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-style_mode = sunset_mode_stylesheet
 
 class MainWindow(QMainWindow):
     """Functionalities of MainWindow:
@@ -52,6 +49,21 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self._stacked_widget)
         
         self._stacked_widget.setCurrentWidget(self._login_scn)
+    
+    def set_style(self, style):
+        logger.info(f"Changed theme to: {style}")
+        if style == 'Light':
+            new_theme = Light
+        elif style == 'Dark':
+            new_theme = Dark
+        elif style == 'Sunset':
+            new_theme = Sunset
+        else:
+            logger.info(f'Theme {style} is not available.')
+            return
+        self._login_scn.setStyleSheet(new_theme)
+        self._mainmenu_scn.setStyleSheet(new_theme)
+        self._lesson1_scn.setStyleSheet(new_theme)
 
     def switch_to_screen(self, screen):
         self._stacked_widget.setCurrentWidget(screen)
@@ -65,9 +77,14 @@ class LoginPage(QMainWindow):
         super().__init__()
         self.parent = parent
         self.ui = loadUi("loginpageGUI.ui", self)
-        self.setStyleSheet(style_mode)
         self.signupButton.clicked.connect(self.sign_up)
         self.loginButton.clicked.connect(self.login)
+
+    def showEvent(self, event):
+        # method run automatically when screen is shown inherited from QWidget->QDialog->ViewProfile
+        super().showEvent(event)
+        self.usernameEdit.setText("")
+        self.loginusernameEdit.setText("")
 
     def sign_up(self):
         if self.usernameEdit.text() == "":
@@ -99,8 +116,8 @@ class MainMenu(QDialog):
         super().__init__()
         self.parent = parent
         loadUi("mainmenuGUI.ui", self)
-        self.setStyleSheet(style_mode)
         self.logoutButton.clicked.connect(self.logout)
+        self.setmodeButton.clicked.connect(self.change_theme)
         self.lesson1Button.clicked.connect(self.choose_lesson_1)
 
     def choose_lesson_1(self):
@@ -127,6 +144,9 @@ class MainMenu(QDialog):
             logger.info("Updated the proficiency.")
         except:
             logger.info("Error. No active user.")
+
+    def change_theme(self):
+        self.parent.set_style(self.modeComboBox.currentText())
     
     def logout(self):
         self.parent.switch_to_screen(self.parent._login_scn)
@@ -141,7 +161,6 @@ class Lesson1(QDialog):
         super().__init__()
         self.parent = parent
         loadUi("lessonGUI.ui", self)
-        self.setStyleSheet(style_mode)
         self.retakeButton.hide()
         self.retakeButton.clicked.connect(self.take_image)
         self.reset_lesson()

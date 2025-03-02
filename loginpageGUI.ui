@@ -14,72 +14,71 @@
    <string>Sign Language Learner</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget#widget{
-background-color:qlineargradient(spread:pad, x1:0.426, y1:0.386364, x2:1, y2:1, stop:0.0371429 rgba(10, 0, 42, 255), stop:1 rgba(117, 58, 58, 255));}
+   <string notr="true">
+QWidget#widget{
+    background-color:qlineargradient(spread:pad, x1:0.426, y1:0.386364, x2:1, y2:1, stop:0.0371429 rgba(204, 77, 61, 200), stop:1 rgba(204, 77, 61, 255));
+}
 
-/* Buttons - nearly completely see-through with light yellow border and text */
 QPushButton {
-    background-color: transparent;
-    border: 1px solid #fff6ab;
-    color: #fff6ab;
+    background-color: white;
+    border: 1px solid #e6e6e6;
+    color: #aa3e32;
     font-family: &quot;Terminal&quot;;
     padding: 5px;
 }
 
 QPushButton:hover {
-    background-color: rgba(255, 246, 171, 0.05);
+    background-color: #f0f0f0;
+    border: 1px solid #d4d4d4;
 }
 
 QPushButton:pressed {
-    background-color: rgba(255, 246, 171, 0.1);
+    background-color: #e6e6e6;
 }
 
-/* Labels - terminal font and light yellow text */
 QLabel {
     font-family: &quot;Terminal&quot;;
-    color: #fff6ab;
+    color: white;
 }
 
-/* Combo boxes - very transparent dark grey with light yellow text */
 QComboBox {
-    background-color: rgba(50, 50, 50, 0.2);
-    border: 1px solid #555555;
+    background-color: white;
+    border: 1px solid #e6e6e6;
     border-radius: 3px;
     padding: 1px 18px 1px 3px;
-    color: #fff6ab;
+    color: #aa3e32;
     font-family: &quot;Terminal&quot;;
 }
 
 QComboBox:hover {
-    border: 1px solid #fff6ab;
+    border: 1px solid #d4d4d4;
 }
 
 QComboBox::drop-down {
     subcontrol-origin: padding;
     subcontrol-position: top right;
     width: 15px;
-    border-left: 1px solid #555555;
+    border-left: 1px solid #e6e6e6;
 }
 
 QComboBox QAbstractItemView {
-    background-color: rgba(50, 50, 50, 0.3);
-    border: 1px solid #555555;
-    color: #fff6ab;
-    selection-background-color: rgba(255, 246, 171, 0.15);
+    background-color: white;
+    border: 1px solid #e6e6e6;
+    color: #aa3e32;
+    selection-background-color: #f0f0f0;
 }
 
-/* Line edit/text boxes - very transparent dark grey with light yellow text */
 QLineEdit, QTextEdit, QPlainTextEdit {
-    background-color: rgba(50, 50, 50, 0.2);
-    border: 1px solid #555555;
+    background-color: white;
+    border: 1px solid #e6e6e6;
     border-radius: 3px;
     padding: 2px;
-    color: #fff6ab;
+    color: #aa3e32;
     font-family: &quot;Terminal&quot;;
 }
 
 QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
-    border: 1px solid #fff6ab;
+    border: 1px solid #aa3e32;
 }</string>
   </property>
   <widget class="QWidget" name="widget" native="true">
@@ -275,63 +274,63 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
             <colorrole role="WindowText">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Button">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Text">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="ButtonText">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Base">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Window">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="PlaceholderText">
              <brush brushstyle="NoBrush">
               <color alpha="128">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
@@ -340,63 +339,63 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
             <colorrole role="WindowText">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Button">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Text">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="ButtonText">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Base">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Window">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="PlaceholderText">
              <brush brushstyle="NoBrush">
               <color alpha="128">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
@@ -405,63 +404,63 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
             <colorrole role="WindowText">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Button">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Text">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="ButtonText">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Base">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Window">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="PlaceholderText">
              <brush brushstyle="NoBrush">
               <color alpha="128">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
@@ -490,63 +489,63 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
             <colorrole role="WindowText">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Button">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Text">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="ButtonText">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Base">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Window">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="PlaceholderText">
              <brush brushstyle="NoBrush">
               <color alpha="128">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
@@ -555,63 +554,63 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
             <colorrole role="WindowText">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Button">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Text">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="ButtonText">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Base">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Window">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="PlaceholderText">
              <brush brushstyle="NoBrush">
               <color alpha="128">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
@@ -620,63 +619,63 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
             <colorrole role="WindowText">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Button">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Text">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="ButtonText">
              <brush brushstyle="SolidPattern">
               <color alpha="255">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Base">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="Window">
              <brush brushstyle="SolidPattern">
-              <color alpha="51">
-               <red>50</red>
-               <green>50</green>
-               <blue>50</blue>
+              <color alpha="255">
+               <red>255</red>
+               <green>255</green>
+               <blue>255</blue>
               </color>
              </brush>
             </colorrole>
             <colorrole role="PlaceholderText">
              <brush brushstyle="NoBrush">
               <color alpha="128">
-               <red>255</red>
-               <green>246</green>
-               <blue>171</blue>
+               <red>170</red>
+               <green>62</green>
+               <blue>50</blue>
               </color>
              </brush>
             </colorrole>
@@ -766,63 +765,63 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Text">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="PlaceholderText">
         <brush brushstyle="NoBrush">
          <color alpha="128">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
@@ -831,63 +830,63 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Text">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="PlaceholderText">
         <brush brushstyle="NoBrush">
          <color alpha="128">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
@@ -896,63 +895,63 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Text">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="PlaceholderText">
         <brush brushstyle="NoBrush">
          <color alpha="128">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
@@ -1018,63 +1017,63 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
           <colorrole role="WindowText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>255</red>
-             <green>246</green>
-             <blue>171</blue>
+             <red>170</red>
+             <green>62</green>
+             <blue>50</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
-            <color alpha="51">
-             <red>50</red>
-             <green>50</green>
-             <blue>50</blue>
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Text">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>255</red>
-             <green>246</green>
-             <blue>171</blue>
+             <red>170</red>
+             <green>62</green>
+             <blue>50</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="ButtonText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>255</red>
-             <green>246</green>
-             <blue>171</blue>
+             <red>170</red>
+             <green>62</green>
+             <blue>50</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Base">
            <brush brushstyle="SolidPattern">
-            <color alpha="51">
-             <red>50</red>
-             <green>50</green>
-             <blue>50</blue>
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Window">
            <brush brushstyle="SolidPattern">
-            <color alpha="51">
-             <red>50</red>
-             <green>50</green>
-             <blue>50</blue>
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="PlaceholderText">
            <brush brushstyle="NoBrush">
             <color alpha="128">
-             <red>255</red>
-             <green>246</green>
-             <blue>171</blue>
+             <red>170</red>
+             <green>62</green>
+             <blue>50</blue>
             </color>
            </brush>
           </colorrole>
@@ -1083,63 +1082,63 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
           <colorrole role="WindowText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>255</red>
-             <green>246</green>
-             <blue>171</blue>
+             <red>170</red>
+             <green>62</green>
+             <blue>50</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
-            <color alpha="51">
-             <red>50</red>
-             <green>50</green>
-             <blue>50</blue>
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Text">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>255</red>
-             <green>246</green>
-             <blue>171</blue>
+             <red>170</red>
+             <green>62</green>
+             <blue>50</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="ButtonText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>255</red>
-             <green>246</green>
-             <blue>171</blue>
+             <red>170</red>
+             <green>62</green>
+             <blue>50</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Base">
            <brush brushstyle="SolidPattern">
-            <color alpha="51">
-             <red>50</red>
-             <green>50</green>
-             <blue>50</blue>
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Window">
            <brush brushstyle="SolidPattern">
-            <color alpha="51">
-             <red>50</red>
-             <green>50</green>
-             <blue>50</blue>
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="PlaceholderText">
            <brush brushstyle="NoBrush">
             <color alpha="128">
-             <red>255</red>
-             <green>246</green>
-             <blue>171</blue>
+             <red>170</red>
+             <green>62</green>
+             <blue>50</blue>
             </color>
            </brush>
           </colorrole>
@@ -1148,63 +1147,63 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
           <colorrole role="WindowText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>255</red>
-             <green>246</green>
-             <blue>171</blue>
+             <red>170</red>
+             <green>62</green>
+             <blue>50</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Button">
            <brush brushstyle="SolidPattern">
-            <color alpha="51">
-             <red>50</red>
-             <green>50</green>
-             <blue>50</blue>
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Text">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>255</red>
-             <green>246</green>
-             <blue>171</blue>
+             <red>170</red>
+             <green>62</green>
+             <blue>50</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="ButtonText">
            <brush brushstyle="SolidPattern">
             <color alpha="255">
-             <red>255</red>
-             <green>246</green>
-             <blue>171</blue>
+             <red>170</red>
+             <green>62</green>
+             <blue>50</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Base">
            <brush brushstyle="SolidPattern">
-            <color alpha="51">
-             <red>50</red>
-             <green>50</green>
-             <blue>50</blue>
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="Window">
            <brush brushstyle="SolidPattern">
-            <color alpha="51">
-             <red>50</red>
-             <green>50</green>
-             <blue>50</blue>
+            <color alpha="255">
+             <red>255</red>
+             <green>255</green>
+             <blue>255</blue>
             </color>
            </brush>
           </colorrole>
           <colorrole role="PlaceholderText">
            <brush brushstyle="NoBrush">
             <color alpha="128">
-             <red>255</red>
-             <green>246</green>
-             <blue>171</blue>
+             <red>170</red>
+             <green>62</green>
+             <blue>50</blue>
             </color>
            </brush>
           </colorrole>
@@ -1243,63 +1242,63 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Text">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="PlaceholderText">
         <brush brushstyle="NoBrush">
          <color alpha="128">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
@@ -1308,63 +1307,63 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Text">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="PlaceholderText">
         <brush brushstyle="NoBrush">
          <color alpha="128">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
@@ -1373,63 +1372,63 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
        <colorrole role="WindowText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Button">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Text">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="ButtonText">
         <brush brushstyle="SolidPattern">
          <color alpha="255">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Base">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="Window">
         <brush brushstyle="SolidPattern">
-         <color alpha="0">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
+         <color alpha="255">
+          <red>255</red>
+          <green>255</green>
+          <blue>255</blue>
          </color>
         </brush>
        </colorrole>
        <colorrole role="PlaceholderText">
         <brush brushstyle="NoBrush">
          <color alpha="128">
-          <red>255</red>
-          <green>246</green>
-          <blue>171</blue>
+          <red>170</red>
+          <green>62</green>
+          <blue>50</blue>
          </color>
         </brush>
        </colorrole>

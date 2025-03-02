@@ -1,4 +1,4 @@
-light_mode_stylesheet = """
+Light = """
 QWidget#widget{
     background-color:qlineargradient(spread:pad, x1:0.426, y1:0.386364, x2:1, y2:1, stop:0.0371429 rgba(204, 77, 61, 200), stop:1 rgba(204, 77, 61, 255));
 }
@@ -66,7 +66,7 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
 }
 """
 
-sunset_mode_stylesheet = """
+Sunset = """
 QWidget#widget{
 background-color:qlineargradient(spread:pad, x1:0.426, y1:0.386364, x2:1, y2:1, stop:0.0371429 rgba(10, 0, 42, 255), stop:1 rgba(117, 58, 58, 255));}
 
@@ -133,7 +133,7 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
 }
 """
 
-dark_mode_stylesheet = """
+Dark = """
 QWidget#widget {
     background-color: qlineargradient(spread:pad, x1:0.426, y1:0.386364, x2:1, y2:1, 
         stop:0.037 rgba(15, 15, 15, 255), 
