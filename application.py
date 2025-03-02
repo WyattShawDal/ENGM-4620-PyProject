@@ -4,16 +4,19 @@ import numpy as np
 
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QStackedWidget, QMessageBox
-from PyQt5.QtGui import QPalette, QColor, QPixmap
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 
 from controller_classes import SessionController, UserController
 from random import shuffle
+from stylesheet import light_mode_stylesheet, sunset_mode_stylesheet, dark_mode_stylesheet
 
 
 # log info for testing; alternative to print() statement
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+style_mode = sunset_mode_stylesheet
 
 class MainWindow(QMainWindow):
     """Functionalities of MainWindow:
@@ -61,7 +64,8 @@ class LoginPage(QMainWindow):
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
-        loadUi("loginpageGUI.ui", self)
+        self.ui = loadUi("loginpageGUI.ui", self)
+        self.setStyleSheet(style_mode)
         self.signupButton.clicked.connect(self.sign_up)
         self.loginButton.clicked.connect(self.login)
 
@@ -95,6 +99,7 @@ class MainMenu(QDialog):
         super().__init__()
         self.parent = parent
         loadUi("mainmenuGUI.ui", self)
+        self.setStyleSheet(style_mode)
         self.lesson1Button.clicked.connect(self.choose_lesson_1)
 
     def choose_lesson_1(self):
@@ -131,6 +136,7 @@ class Lesson1(QDialog):
         super().__init__()
         self.parent = parent
         loadUi("lessonGUI.ui", self)
+        self.setStyleSheet(style_mode)
         self.retakeButton.hide()
         self.retakeButton.clicked.connect(self.take_image)
         self.reset_lesson()
@@ -215,17 +221,6 @@ class Lesson1(QDialog):
 QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
 QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
 app = QApplication(sys.argv)
-"""dark_palette = QPalette()
-dark_palette.setColor(QPalette.Window, QColor(60, 70, 95))
-dark_palette.setColor(QPalette.WindowText, QColor(0, 0, 0))
-dark_palette.setColor(QPalette.Base, QColor(60, 70, 95))
-dark_palette.setColor(QPalette.AlternateBase, QColor(53, 53, 53))
-dark_palette.setColor(QPalette.ToolTipBase, QColor(255, 255, 255))
-dark_palette.setColor(QPalette.ToolTipText, QColor(255, 255, 255))
-dark_palette.setColor(QPalette.Text, QColor(255, 255, 255))
-dark_palette.setColor(QPalette.Button, QColor(100, 140, 190))
-dark_palette.setColor(QPalette.ButtonText, QColor(0, 0, 0))
-app.setPalette(dark_palette)"""
 
 window = MainWindow()
 window.show()

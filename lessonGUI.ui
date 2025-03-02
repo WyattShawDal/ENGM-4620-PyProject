@@ -11,7 +11,76 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Sign Language Learner</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#widget{
+background-color:qlineargradient(spread:pad, x1:0.426, y1:0.386364, x2:1, y2:1, stop:0.0371429 rgba(10, 0, 42, 255), stop:1 rgba(117, 58, 58, 255));}
+
+/* Buttons - nearly completely see-through with light yellow border and text */
+QPushButton {
+    background-color: transparent;
+    border: 1px solid #fff6ab;
+    color: #fff6ab;
+    font-family: &quot;Terminal&quot;;
+    padding: 5px;
+}
+
+QPushButton:hover {
+    background-color: rgba(255, 246, 171, 0.05);
+}
+
+QPushButton:pressed {
+    background-color: rgba(255, 246, 171, 0.1);
+}
+
+/* Labels - terminal font and light yellow text */
+QLabel {
+    font-family: &quot;Terminal&quot;;
+    color: #fff6ab;
+}
+
+/* Combo boxes - very transparent dark grey with light yellow text */
+QComboBox {
+    background-color: rgba(50, 50, 50, 0.2);
+    border: 1px solid #555555;
+    border-radius: 3px;
+    padding: 1px 18px 1px 3px;
+    color: #fff6ab;
+    font-family: &quot;Terminal&quot;;
+}
+
+QComboBox:hover {
+    border: 1px solid #fff6ab;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-left: 1px solid #555555;
+}
+
+QComboBox QAbstractItemView {
+    background-color: rgba(50, 50, 50, 0.3);
+    border: 1px solid #555555;
+    color: #fff6ab;
+    selection-background-color: rgba(255, 246, 171, 0.15);
+}
+
+/* Line edit/text boxes - very transparent dark grey with light yellow text */
+QLineEdit, QTextEdit, QPlainTextEdit {
+    background-color: rgba(50, 50, 50, 0.2);
+    border: 1px solid #555555;
+    border-radius: 3px;
+    padding: 2px;
+    color: #fff6ab;
+    font-family: &quot;Terminal&quot;;
+}
+
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
+    border: 1px solid #fff6ab;
+}</string>
   </property>
   <widget class="QWidget" name="widget" native="true">
    <property name="geometry">
@@ -23,8 +92,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">QWidget#widget{
-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0.0302013 rgba(204, 48, 29, 255), stop:0.969799 rgba(255, 255, 255, 255));}</string>
+    <string notr="true"/>
    </property>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
@@ -35,9 +103,14 @@ background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0.030
       <height>40</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Terminal</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 12pt &quot;Terminal&quot;;</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Lesson 1</string>
@@ -56,8 +129,7 @@ font: 12pt &quot;Terminal&quot;;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 8pt &quot;Terminal&quot;;</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Please sign the letter below:</string>
@@ -79,8 +151,7 @@ font: 8pt &quot;Terminal&quot;;</string>
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255);
-font: 8pt &quot;Terminal&quot;;</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Incorrect. Correct answer: letter</string>
@@ -102,8 +173,7 @@ font: 8pt &quot;Terminal&quot;;</string>
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(170, 62, 50);
-font: 8pt &quot;Terminal&quot;;</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Take Picture</string>
@@ -125,8 +195,7 @@ font: 8pt &quot;Terminal&quot;;</string>
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(170, 62, 50);
-font: 8pt &quot;Terminal&quot;;</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Retake</string>
@@ -163,7 +232,7 @@ font: 8pt &quot;Terminal&quot;;</string>
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-color: rgb(255, 255, 255);</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>
