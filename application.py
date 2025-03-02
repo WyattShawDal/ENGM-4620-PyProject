@@ -5,6 +5,7 @@ import numpy as np
 from PyQt5.uic import loadUi
 from PyQt5.QtWidgets import QApplication, QMainWindow, QDialog, QStackedWidget, QMessageBox
 from PyQt5.QtGui import QPalette, QColor, QPixmap
+from PyQt5.QtCore import Qt
 
 from controller_classes import SessionController, UserController
 from random import shuffle
@@ -26,7 +27,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         logger.info("Entered MainWindow")
 
-        self.setMinimumSize(750, 650)
+        self.setMinimumSize(800, 570)
         self.setWindowTitle("Sign Language Learner")
 
         self._current_user = None
@@ -39,14 +40,12 @@ class MainWindow(QMainWindow):
         self._main_menu_scn = LoginPage(self)
         self._choose_lesson_scn = MainMenu(self)
         self._lesson1_scn = Lesson1(self)
-        self._profile_scn = ViewProfile(self)
 
         # add application screens to stacked widget
         self._stacked_widget = QStackedWidget()
         self._stacked_widget.addWidget(self._main_menu_scn)
         self._stacked_widget.addWidget(self._choose_lesson_scn)
         self._stacked_widget.addWidget(self._lesson1_scn)
-        self._stacked_widget.addWidget(self._profile_scn)
         self.setCentralWidget(self._stacked_widget)
         
         self._stacked_widget.setCurrentWidget(self._main_menu_scn)
@@ -97,15 +96,31 @@ class MainMenu(QDialog):
         self.parent = parent
         loadUi("mainmenuGUI.ui", self)
         self.lesson1Button.clicked.connect(self.choose_lesson_1)
-        self.profileButton.clicked.connect(self.choose_view_profile)
 
     def choose_lesson_1(self):
         logger.info("Lesson 1 selected.")
         self.parent.switch_to_screen(self.parent._lesson1_scn)
     
-    def choose_view_profile(self):
-        logger.info("Entering profile view.")
-        self.parent.switch_to_screen(self.parent._profile_scn)
+    def showEvent(self, event):
+        # method run automatically when screen is shown inherited from QWidget->QDialog->ViewProfile
+        super().showEvent(event)
+        self.update_user_info()
+    
+    def update_user_info(self):
+        try:
+            self.usernameLabel.setText(self.parent._current_user)
+            
+            score = str(self.parent._user_controller._active_users[self.parent._current_user]._overall_score)
+            logger.info("Found the score.")
+            self.scoreLabel.setText(score)
+            logger.info("Updated the score.")
+
+            proficiency = self.parent._user_controller._active_users[self.parent._current_user]._proficiency
+            logger.info("Found the proficiency.")
+            self.proficiencyLabel.setText(proficiency)
+            logger.info("Updated the proficiency.")
+        except:
+            logger.info("Error. No active user.")
 
 """Functionalities of Lesson1:
     - Cycle through all letters of the alphabet randomly
@@ -175,7 +190,7 @@ class Lesson1(QDialog):
             self.promptBox.setText("Correct!")
             self._score.append(1)
         else: 
-            self.promptBox.setText(f"Incorrect. Correct answer: {letter}")
+            self.promptBox.setText(f"Incorrect. Correct answer: {self._current_prompt}")
             self._score.append(0)
         self.questionBox.setText("Result:")
         self.button.setText("Next")
@@ -196,46 +211,11 @@ class Lesson1(QDialog):
         self.parent.switch_to_screen(self.parent._choose_lesson_scn)
         self.reset_lesson()
         logger.info("Lesson 1 completed.")
-
-"""Functionalities of ViewProfile:
-    - Displays the user's name, overall score, and proficiency level
-    - Updates each time the screen is accessed
-"""
-class ViewProfile(QDialog):
-    def __init__(self, parent):
-        super().__init__()
-        self.parent = parent
-        loadUi("profileviewGUI.ui", self)
-        self.returnButton.clicked.connect(self.exit_profile_view)
-
-    def showEvent(self, event):
-        # method run automatically when screen is shown inherited from QWidget->QDialog->ViewProfile
-        super().showEvent(event)
-        self.update_user_info()
-    
-    def update_user_info(self):
-        try:
-            self.usernameslotLabel.setText(self.parent._current_user)
-            
-            score = str(self.parent._user_controller._active_users[self.parent._current_user]._overall_score)
-            logger.info("Found the score.")
-            self.scoreslotLabel.setText(score)
-            logger.info("Updated the score.")
-
-            proficiency = self.parent._user_controller._active_users[self.parent._current_user]._proficiency
-            logger.info("Found the proficiency.")
-            self.proficiencyslotLabel.setText(proficiency)
-            logger.info("Updated the proficiency.")
-        except:
-            logger.info("Error. No active user.") 
-
-    def exit_profile_view(self):
-        self.parent.switch_to_screen(self.parent._choose_lesson_scn)
-        logger.info("Exiting profile view.")
         
-# Set the palette of the window, not sure if needed rn or if .ui files can take care of this
+QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
+QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
 app = QApplication(sys.argv)
-dark_palette = QPalette()
+"""dark_palette = QPalette()
 dark_palette.setColor(QPalette.Window, QColor(60, 70, 95))
 dark_palette.setColor(QPalette.WindowText, QColor(0, 0, 0))
 dark_palette.setColor(QPalette.Base, QColor(60, 70, 95))
@@ -245,7 +225,7 @@ dark_palette.setColor(QPalette.ToolTipText, QColor(255, 255, 255))
 dark_palette.setColor(QPalette.Text, QColor(255, 255, 255))
 dark_palette.setColor(QPalette.Button, QColor(100, 140, 190))
 dark_palette.setColor(QPalette.ButtonText, QColor(0, 0, 0))
-app.setPalette(dark_palette)
+app.setPalette(dark_palette)"""
 
 window = MainWindow()
 window.show()
