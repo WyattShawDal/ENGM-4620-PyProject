@@ -317,11 +317,11 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="modeComboBox">
     <property name="geometry">
      <rect>
       <x>460</x>
-      <y>370</y>
+      <y>360</y>
       <width>111</width>
       <height>22</height>
      </rect>
@@ -346,7 +346,7 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>340</y>
+      <y>330</y>
       <width>131</width>
       <height>20</height>
      </rect>
@@ -362,7 +362,7 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
     <property name="geometry">
      <rect>
       <x>450</x>
-      <y>360</y>
+      <y>350</y>
       <width>201</width>
       <height>1</height>
      </rect>
@@ -404,6 +404,32 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="setmodeButton">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>400</y>
+      <width>84</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Set Mode</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="logoutButton">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>20</y>
+      <width>84</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Log Out</string>
     </property>
    </widget>
   </widget>

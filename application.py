@@ -40,18 +40,18 @@ class MainWindow(QMainWindow):
         self._user_controller = UserController('our_users')
 
         # initialize all application screens
-        self._main_menu_scn = LoginPage(self)
-        self._choose_lesson_scn = MainMenu(self)
+        self._login_scn = LoginPage(self)
+        self._mainmenu_scn = MainMenu(self)
         self._lesson1_scn = Lesson1(self)
 
         # add application screens to stacked widget
         self._stacked_widget = QStackedWidget()
-        self._stacked_widget.addWidget(self._main_menu_scn)
-        self._stacked_widget.addWidget(self._choose_lesson_scn)
+        self._stacked_widget.addWidget(self._login_scn)
+        self._stacked_widget.addWidget(self._mainmenu_scn)
         self._stacked_widget.addWidget(self._lesson1_scn)
         self.setCentralWidget(self._stacked_widget)
         
-        self._stacked_widget.setCurrentWidget(self._main_menu_scn)
+        self._stacked_widget.setCurrentWidget(self._login_scn)
 
     def switch_to_screen(self, screen):
         self._stacked_widget.setCurrentWidget(screen)
@@ -77,7 +77,7 @@ class LoginPage(QMainWindow):
         while(self.parent._user_controller.create_user(self.parent._current_user, self.comboBox.currentText()) == None):
             QMessageBox(QMessageBox.NoIcon, "Error!", "That username is taken!     ", QMessageBox.Ok).exec_()
             return
-        self.parent.switch_to_screen(self.parent._choose_lesson_scn)
+        self.parent.switch_to_screen(self.parent._mainmenu_scn)
         logger.info("Sign up successful.")
 
     def login(self):
@@ -85,7 +85,7 @@ class LoginPage(QMainWindow):
         if name in self.parent._user_controller._active_users:
             self.parent._current_user = name
             logger.info(f"Logged in as: {name}")
-            self.parent.switch_to_screen(self.parent._choose_lesson_scn)
+            self.parent.switch_to_screen(self.parent._mainmenu_scn)
         else:
             QMessageBox(QMessageBox.NoIcon, "Error!", "Account does not exist!     ", QMessageBox.Ok).exec_()
             logger.info(f"User {name} does not exist.")
@@ -100,6 +100,7 @@ class MainMenu(QDialog):
         self.parent = parent
         loadUi("mainmenuGUI.ui", self)
         self.setStyleSheet(style_mode)
+        self.logoutButton.clicked.connect(self.logout)
         self.lesson1Button.clicked.connect(self.choose_lesson_1)
 
     def choose_lesson_1(self):
@@ -126,6 +127,10 @@ class MainMenu(QDialog):
             logger.info("Updated the proficiency.")
         except:
             logger.info("Error. No active user.")
+    
+    def logout(self):
+        self.parent.switch_to_screen(self.parent._login_scn)
+        logger.info("Logged out.")
 
 """Functionalities of Lesson1:
     - Cycle through all letters of the alphabet randomly
@@ -214,7 +219,7 @@ class Lesson1(QDialog):
         self.button.clicked.connect(self.return_to_choose_lesson)
     
     def return_to_choose_lesson(self):
-        self.parent.switch_to_screen(self.parent._choose_lesson_scn)
+        self.parent.switch_to_screen(self.parent._mainmenu_scn)
         self.reset_lesson()
         logger.info("Lesson 1 completed.")
         
