@@ -36,7 +36,7 @@ class MainWindow(QMainWindow):
         self._current_user = None
 
         # initialize base class controllers
-        self._session_controller = SessionController('ASL_EP7_BATCH64.pkl')
+        self._session_controller = SessionController('Zoya_Letters_EP10.pkl')
         self._user_controller = UserController('our_users')
 
         # initialize all application screens
@@ -150,7 +150,7 @@ class Lesson1(QDialog):
 
     @staticmethod
     def alphabet_generator():
-        alphabet = list('abcdefghijklmnopqrstuvwxyz')
+        alphabet = list('abcde')
         shuffle(alphabet)
         for letter in alphabet:
             yield letter
@@ -208,7 +208,7 @@ class Lesson1(QDialog):
         except TypeError:
             pass
         self.questionBox.setText("Lesson complete!")
-        self.promptBox.setText(f"Final score: {np.sum(self._score)}/26")
+        self.promptBox.setText(f"Final score: {np.sum(self._score)}/5")
         self.parent._user_controller.update_user(self.parent._current_user, self._score)
         self.button.setText("Finish")
         self.button.clicked.connect(self.return_to_choose_lesson)

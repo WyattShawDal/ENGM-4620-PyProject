@@ -66,8 +66,8 @@ class User:
         self._name = name
         self._proficiency = proficiency
         self._score_history = [[] for x in range(26)]
-        self._w_let_scores = [None for x in range(26)]
-        self._p_let_scores = [None for x in range(26)]
+        self._w_let_scores = [0 for x in range(26)]
+        self._p_let_scores = [0 for x in range(26)]
         self._overall_score = 0.0
 
     def display_profile(self): # eventually make an Application class that can display and edit profile info

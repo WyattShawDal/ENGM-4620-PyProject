@@ -72,9 +72,16 @@ class UserController:
                 weight = (1-alpha) ** j 
                 score += weight * (1 if result else -1)
                 weighted_sum += weight
-            # weighted scores are from -1 to 1 while percent scores are from 0 to 100
-            user._w_let_scores[letter] = score / weighted_sum
-            user._p_let_scores[letter] = ((user._w_let_scores[letter] + 1) / 2) * 100
+
+            # weighted sum is zero when there is no history for a letter yet, so we need to prevent division by zero
+            if weighted_sum > 0:
+                # weighted scores are from -1 to 1 while percent scores are from 0 to 100
+                user._w_let_scores[letter] = score / weighted_sum
+                user._p_let_scores[letter] = ((user._w_let_scores[letter] + 1) / 2) * 100
+            else:
+                # Default values when there's no score history for a letter yet
+                user._w_let_scores[letter] = 0  
+                user._p_let_scores[letter] = 0  
         
         # calculate the overall user score as avg of letter scores
         user._overall_score = np.mean(user._p_let_scores)
