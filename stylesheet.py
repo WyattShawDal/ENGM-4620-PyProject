@@ -64,6 +64,20 @@ QLineEdit, QTextEdit, QPlainTextEdit {
 QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
     border: 1px solid #aa3e32;
 }
+
+QProgressBar {
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+    height: 20px;
+    color: #aa3e32;
+    font-family: "Terminal";
+}
+QProgressBar::chunk {
+    background-color: #cc4d3d;
+    border-radius: 5px;
+}
 """
 
 Sunset = """
@@ -130,6 +144,20 @@ QLineEdit, QTextEdit, QPlainTextEdit {
 
 QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
     border: 1px solid #fff6ab;
+}
+
+QProgressBar {
+    border: 1px solid #555555;
+    border-radius: 5px;
+    text-align: center;
+    background-color: rgba(50, 50, 50, 0.2);
+    height: 20px;
+    color: #fff6ab;
+    font-family: "Terminal";
+}
+QProgressBar::chunk {
+    background-color: rgba(255, 176, 89, 0.8);
+    border-radius: 5px;
 }
 """
 
@@ -205,5 +233,19 @@ QLineEdit, QTextEdit, QPlainTextEdit {
 
 QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
     border: 1px solid rgb(255, 90, 70); /* More vibrant red when focused */
+}
+
+QProgressBar {
+    border: 1px solid rgb(90, 90, 90);
+    border-radius: 5px;
+    text-align: center;
+    background-color: rgb(20, 20, 20);
+    height: 20px;
+    color: rgb(235, 235, 235);
+    font-family: "Terminal";
+}
+QProgressBar::chunk {
+    background-color: rgb(255, 70, 50);
+    border-radius: 5px;
 }
 """

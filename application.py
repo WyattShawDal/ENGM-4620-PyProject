@@ -117,6 +117,7 @@ class MainMenu(QDialog):
         self.parent = parent
         loadUi("mainmenuGUI.ui", self)
         self.logoutButton.clicked.connect(self.logout)
+        self.checkscoreButton.clicked.connect(self.check_score)
         self.setmodeButton.clicked.connect(self.change_theme)
         self.lesson1Button.clicked.connect(self.choose_lesson_1)
 
@@ -147,6 +148,13 @@ class MainMenu(QDialog):
 
     def change_theme(self):
         self.parent.set_style(self.modeComboBox.currentText())
+
+    def check_score(self):
+        letter = self.letterselectComboBox.currentText()
+        index = ord(letter) - ord('a')
+        result = self.parent._user_controller._active_users[self.parent._current_user]._p_let_scores[index]
+        self.letterscoreProgressBar.setValue(int(result))
+        logger.info(f'Score {letter} = {result}')
     
     def logout(self):
         self.parent.switch_to_screen(self.parent._login_scn)
