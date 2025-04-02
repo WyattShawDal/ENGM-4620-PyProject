@@ -9,22 +9,18 @@ import logging
 
 db_logger = logging.getLogger("Database")
 db_logger.setLevel(level = logging.INFO)
-"""
-DB Structure
 
-Users {
-    "User1": {
-        proficency: "beginner" string
-        letter_scores: [] #array of len(alphabet)
-    }
-}
-
-"""
 class Database:
+    '''Functionalities of this class:
+    - create, load, and save a database
+    - can be used a parent class for future databases needed
+
+    Attributes: 
+    - db_name (string): specifies name of file database is saved to
+    - db_data (User): dictionary of User objects representing user profiles
+    '''
     def __init__(self, db_name: str = "data"):
-        #Name of database
         self.db_name = db_name
-        #Runtime store of data
         self.db_data = {}
     
     def db_create(self) -> dict:
@@ -52,6 +48,10 @@ class Database:
 
 # New PickleDatabase class inheriting from Database
 class PickleDatabase(Database):
+    '''Functionalities of this class: 
+    - load and save the User pickle database
+    - same attributes as parent class
+    '''
     def __init__(self, db_name: str = "data"):
         # Add .pkl extension if not already present
         self.db_name = f"{db_name}.pkl" if not db_name.endswith(".pkl") else db_name

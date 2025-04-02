@@ -20,13 +20,19 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class MainWindow(QMainWindow):
-    """Functionalities of MainWindow:
+    '''Functionalities of MainWindow:
         - Create screen widgets
         - Toggle between widgets
     
     Attributes: 
         _current_user (string): username of the current user
-    """
+        _session_controller (SessionController): sets up Camera and Model
+        _user_controller (UserController): sets up user database
+        _login_scn (LoginPage): initializes the login page
+        _mainmenu_scn (MainMenu): initializes the main menu page
+        _lesson1_scn (Lesson1): initializes the first lesson page
+        _stacked_widget (QStackedWidget): stores the applicatin pages
+    '''
     def __init__(self):
         super().__init__()
         logger.info("Entered MainWindow")
@@ -70,13 +76,17 @@ class MainWindow(QMainWindow):
         self._lesson1_scn.setStyleSheet(new_theme)
 
     def switch_to_screen(self, screen):
+        # change page that is visible
         self._stacked_widget.setCurrentWidget(screen)
 
-"""Functionalities of LoginPage:
-    - Have user sign up
-    - TODO: have users saved to user can simply login
-"""
+
 class LoginPage(QMainWindow):
+    '''Functionalities of LoginPage:
+    - Have user sign up or login
+
+    Attributes:
+    - ui: loads the GUI features and theme
+    '''
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
@@ -91,10 +101,13 @@ class LoginPage(QMainWindow):
         self.loginusernameEdit.setText("")
 
     def sign_up(self):
+        # get client username
         if self.usernameEdit.text() == "":
             QMessageBox(QMessageBox.NoIcon, "Error!", "No username specified!     ", QMessageBox.Ok).exec_()
             return
         self.parent._current_user = self.usernameEdit.text()
+
+        # ensure valid username entry
         while(self.parent._user_controller.create_user(self.parent._current_user, self.comboBox.currentText()) == None):
             QMessageBox(QMessageBox.NoIcon, "Error!", "That username is taken!     ", QMessageBox.Ok).exec_()
             return
@@ -102,7 +115,10 @@ class LoginPage(QMainWindow):
         logger.info("Sign up successful.")
 
     def login(self):
+        # get client username
         name = self.loginusernameEdit.text()
+
+        # ensure user exists in database
         if name in self.parent._user_controller._active_users:
             self.parent._current_user = name
             logger.info(f"Logged in as: {name}")
@@ -111,11 +127,11 @@ class LoginPage(QMainWindow):
             QMessageBox(QMessageBox.NoIcon, "Error!", "Account does not exist!     ", QMessageBox.Ok).exec_()
             logger.info(f"User {name} does not exist.")
 
-"""Functionalities of MainMenu:
+class MainMenu(QDialog):
+    '''Functionalities of MainMenu:
     - Have user choose what lesson they want to try
     - For now only one lesson available
-"""
-class MainMenu(QDialog):
+    '''
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
@@ -125,17 +141,18 @@ class MainMenu(QDialog):
         self.setmodeButton.clicked.connect(self.change_theme)
         self.lesson1Button.clicked.connect(self.choose_lesson_1)
 
-    def choose_lesson_1(self):
-        logger.info("Lesson 1 selected.")
-        self.parent.switch_to_screen(self.parent._lesson1_scn)
-    
     def showEvent(self, event):
         # method run automatically when screen is shown inherited from QWidget->QDialog->ViewProfile
         super().showEvent(event)
         self.update_user_info()
+
+    def choose_lesson_1(self):
+        logger.info("Lesson 1 selected.")
+        self.parent.switch_to_screen(self.parent._lesson1_scn)
     
     def update_user_info(self):
         try:
+            # update user info on settings page upon login/signup
             self.usernameLabel.setText(self.parent._current_user)
             
             score = str(round(self.parent._user_controller._active_users[self.parent._current_user]._overall_score, 2))
@@ -151,14 +168,15 @@ class MainMenu(QDialog):
             self.letterselectComboBox.setCurrentIndex(0)
             self.letterscoreProgressBar.setValue(0)
             logger.info("Updated the letter score checker.")
-            
         except:
             logger.info("Error. No active user.")
 
     def change_theme(self):
+        # change style sheet to new selected theme
         self.parent.set_style(self.modeComboBox.currentText())
 
     def check_score(self):
+        # fetch the score of the selected letter
         letter = self.letterselectComboBox.currentText()
         index = ord(letter) - ord('a')
         result = self.parent._user_controller._active_users[self.parent._current_user]._p_let_scores[index]
@@ -169,11 +187,12 @@ class MainMenu(QDialog):
         self.parent.switch_to_screen(self.parent._login_scn)
         logger.info("Logged out.")
 
-"""Functionalities of Lesson1:
-    - Cycle through all letters of the alphabet randomly
-    - Check that user is doing it correctly and save their score
-"""
+
 class Lesson1(QDialog):
+    '''Functionalities of Lesson1:
+    - Cycle through letters of the alphabet randomly
+    - Check that user is doing it correctly and save their score
+    '''
     def __init__(self, parent):
         super().__init__()
         self.parent = parent
@@ -183,6 +202,7 @@ class Lesson1(QDialog):
         self.reset_lesson()
     
     def reset_lesson(self):
+        # reset general variables an image placeholder when lesson is restarted
         self._score = []
         self._current_prompt = None
         self._pixmap = QPixmap()
@@ -201,11 +221,13 @@ class Lesson1(QDialog):
 
     def next_question(self):
         try:
+            # prompt the user with a letter and move to take image
             self.questionBox.setText("Please sign the letter below:")
             self._current_prompt = next(self._alphabet_generator)
             self.promptBox.setText(self._current_prompt)
             self.take_image()
         except StopIteration:
+            # if generator is depleted then the lesson is over
             self.display_score()
     
     def take_image(self):
@@ -223,7 +245,8 @@ class Lesson1(QDialog):
         except TypeError:
             pass
         try:
-            letter, probability = self.parent._session_controller.capture_and_predict()
+            # get letter prediction
+            letter, _ = self.parent._session_controller.capture_and_predict()
         except:
             QMessageBox(QMessageBox.NoIcon, "Error!", "Camera not accessible!     ", QMessageBox.Ok).exec_()
             self.take_image()
@@ -240,6 +263,7 @@ class Lesson1(QDialog):
             self.button.clicked.disconnect()
         except TypeError:
             pass
+        # if image is accepted then check result and update score accordingly 
         if self._current_prompt == letter:
             self.promptBox.setText("Correct!")
             self._score.append(1)
@@ -255,6 +279,7 @@ class Lesson1(QDialog):
             self.button.clicked.disconnect()
         except TypeError:
             pass
+        # upon lesson completion, display users lesson score
         self.questionBox.setText("Lesson complete!")
         self.promptBox.setText(f"Final score: {np.sum(self._score)}/5")
         self.parent._user_controller.update_user(self.parent._current_user, self._score)
@@ -266,13 +291,16 @@ class Lesson1(QDialog):
         self.reset_lesson()
         logger.info("Lesson 1 completed.")
         
+# Set up application as a QApplication
 QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
 QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
 app = QApplication(sys.argv)
 
+# Ensure of application is visible
 window = MainWindow()
 window.show()
 
+# Launch application
 try:
     sys.exit(app.exec())
 except SystemExit:
