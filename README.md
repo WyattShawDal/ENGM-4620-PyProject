@@ -5,12 +5,15 @@ A repository holding the contents of the Major Python Project
 
 Computer Vision Sign Language practice tool
 
+The Project uses a custom trained Resnet50 Model to make infer the sign being shown in the image
+
 ## Build Instructions:
 
 1. Clone the repostory
 2. Launch a [Virtual Environment](https://docs.python.org/3/library/venv.html)
-3. **from within venv**: `pip install -r requirements.txt`
-4. Run: `py main.py` (for now)
+3. Activate Virtual Environment [Name]/Scripts/activate
+4. **from within venv**: `pip install -r requirements.txt`
+5. Run: `py application.py` 
 
 ## How to develop PyQt5 Designer Code
 
@@ -21,9 +24,8 @@ Computer Vision Sign Language practice tool
 
 ## Current TODO List
 
-1. Add button to Lesson1 class that allows user to retake picture before submitting it
-2. Add model file and remove model access blocking in Lesson 1
-3. Verify there is proper Error catching implemented everywhere
-4. Add more lessons eventually
-5. Allow user to scroll through/view each letter score in profile view page
-6. Add ability to view history of results for each lesson
+- Improve Model Accuracy Across signs
+- Verify there is proper Error catching implemented everywhere
+- Add more lessons eventually
+- Allow user to scroll through/view each letter score in profile view page
+- Add ability to view history of results for each lesson
