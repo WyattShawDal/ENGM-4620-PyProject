@@ -1,3 +1,7 @@
+'''File name: sheetstyle.py
+Contributers: Zoe Takacs and Wyatt Shaw
+Info: Where the theme style sheets are stored
+'''
 Light = """
 QWidget#widget{
     background-color:qlineargradient(spread:pad, x1:0.426, y1:0.386364, x2:1, y2:1, stop:0.0371429 rgba(204, 77, 61, 200), stop:1 rgba(204, 77, 61, 255));

@@ -1,3 +1,7 @@
+'''File name: application.py
+Contributers: Zoe Takacs and Wyatt Shaw
+Info: Main application and screen classes
+'''
 import sys
 import logging
 import numpy as np
@@ -34,7 +38,7 @@ class MainWindow(QMainWindow):
 
         # initialize base class controllers
         self._session_controller = SessionController('Zoya_Letters_EP10.pkl')
-        self._user_controller = UserController('our_users')
+        self._user_controller = UserController('user_database')
 
         # initialize all application screens
         self._login_scn = LoginPage(self)

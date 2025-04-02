@@ -1,3 +1,7 @@
+'''File name: base_classes.py
+Contributers: Zoe Takacs and Wyatt Shaw
+Info: Model, User, and Camera class definition
+'''
 from fastai.vision.all import *
 import cv2
 import platform

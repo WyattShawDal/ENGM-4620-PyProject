@@ -3,7 +3,7 @@
 
 A repository holding the contents of the Major Python Project
 
-Computer Vision Sign Language practice tool
+Computer Vision Sign Language Personal Trainer
 
 The Project uses a custom trained Resnet50 Model to make infer the sign being shown in the image
 
@@ -21,11 +21,3 @@ The Project uses a custom trained Resnet50 Model to make infer the sign being sh
 2. Open designer by calling **from within project folder**: `designer`
 3. Develop GUI and save as .ui file to project folder
 4. Convert to a python file: `python -m PyQt5.uic.pyuic -x filename.ui -o output_filename.py`
-
-## Current TODO List
-
-- Improve Model Accuracy Across signs
-- Verify there is proper Error catching implemented everywhere
-- Add more lessons eventually
-- Allow user to scroll through/view each letter score in profile view page
-- Add ability to view history of results for each lesson

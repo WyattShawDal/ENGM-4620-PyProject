@@ -1,3 +1,7 @@
+'''File name: user_database.py
+Contributers: Zoe Takacs and Wyatt Shaw
+Info: Database and PickleDatabase class definition
+'''
 import json
 import pickle
 from pathlib import Path

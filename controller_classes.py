@@ -1,3 +1,7 @@
+'''File name: controller_classes.py
+Contributers: Zoe Takacs and Wyatt Shaw
+Info: SessionController and UserController class definition
+'''
 from base_classes import User, Model, Camera
 from user_database import PickleDatabase
 import logging

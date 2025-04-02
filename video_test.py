@@ -1,3 +1,8 @@
+'''File name: video_test.py
+Contributers: Zoe Takacs and Wyatt Shaw
+Info: Used to test video capture
+Note: NOT used to run the application
+'''
 import sys
 import cv2
 import numpy as np

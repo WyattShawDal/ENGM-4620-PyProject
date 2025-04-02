@@ -1,3 +1,8 @@
+'''File name: create_photos.py
+Contributers: Zoe Takacs and Wyatt Shaw
+Info: Used to take and label images for a dataset to train the vision model
+Note: NOT used to run the application 
+'''
 import sys
 import os
 import cv2

@@ -1,3 +1,8 @@
+'''File name: main.py
+Contributers: Zoe Takacs and Wyatt Shaw
+Info: Used to test different base classes
+Note: NOT used to run application
+'''
 import os
 from base_classes import Model, User, Camera
 
