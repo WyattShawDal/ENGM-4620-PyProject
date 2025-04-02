@@ -134,15 +134,20 @@ class MainMenu(QDialog):
         try:
             self.usernameLabel.setText(self.parent._current_user)
             
-            score = str(self.parent._user_controller._active_users[self.parent._current_user]._overall_score)
+            score = str(round(self.parent._user_controller._active_users[self.parent._current_user]._overall_score, 2))
             logger.info("Found the score.")
-            self.scoreLabel.setText(score)
+            self.scoreLabel.setText(f"{score}%")
             logger.info("Updated the score.")
 
             proficiency = self.parent._user_controller._active_users[self.parent._current_user]._proficiency
             logger.info("Found the proficiency.")
             self.proficiencyLabel.setText(proficiency)
             logger.info("Updated the proficiency.")
+
+            self.letterselectComboBox.setCurrentIndex(0)
+            self.letterscoreProgressBar.setValue(0)
+            logger.info("Updated the letter score checker.")
+            
         except:
             logger.info("Error. No active user.")
 
@@ -177,6 +182,9 @@ class Lesson1(QDialog):
         self._score = []
         self._current_prompt = None
         self._pixmap = QPixmap()
+        self._pixmap.load('default_img.png')
+        self.image.setPixmap(self._pixmap)
+        self.image.update()
         self._alphabet_generator = self.alphabet_generator()
         self.next_question()
 
@@ -210,7 +218,11 @@ class Lesson1(QDialog):
             self.button.clicked.disconnect()
         except TypeError:
             pass
-        letter, probability = self.parent._session_controller.capture_and_predict()
+        try:
+            letter, probability = self.parent._session_controller.capture_and_predict()
+        except:
+            QMessageBox(QMessageBox.NoIcon, "Error!", "Camera not accessible!     ", QMessageBox.Ok).exec_()
+            self.take_image()
         self._pixmap.load('new_image.png')
         self.image.setPixmap(self._pixmap)
         self.image.update()

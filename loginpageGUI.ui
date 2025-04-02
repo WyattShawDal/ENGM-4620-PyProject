@@ -152,7 +152,7 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>Please make a profile below. I'm begging you. Do it.</string>
+     <string>Please login or create an account.</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -1211,8 +1211,7 @@ QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
         </palette>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string/>
